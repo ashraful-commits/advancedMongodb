@@ -6,9 +6,9 @@ const Movie = require('../models/movie');
 const teacherModle = async () => {
   try {
     const data = await teacher
-      .findById('635c90c6bb74be5d304ca086')
+      .findById('635cc0b9db037048cf389038')
       .populate(['food', 'movie']);
-    console.log(data.welcome);
+    console.log(data);
   } catch (error) {
     console.log(error.message);
   }

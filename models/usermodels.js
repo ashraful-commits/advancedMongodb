@@ -48,22 +48,28 @@ const teacherModel = mongoose.Schema(
 teacherModel.statics.talsh = function () {
   return this.find();
 };
-//======================================gender>
+//======================================gender> use after static
 teacherModel.query.gender = function () {
   return this.where('gender').eq('Female');
 };
-//=======================================location>
+//=======================================location> use after static
 teacherModel.query.location = function () {
   return this.where('location').eq('Uttara');
 };
-//=========================================methods
+//=========================================methods use after collect data
 teacherModel.methods.isMirpur = function () {
   return this;
 };
 
-//===========================================virtual>
+//===========================================virtual> use after collect data
 teacherModel.virtual('welcome').get(function () {
   return `ekhane aser jonno apnake sagotom ${this.name} apu`;
+});
+
+//===================================pre and post>
+teacherModel.post('save', function (doc, next) {
+  doc.location = 'Mirpur';
+  next();
 });
 //=========================================> export modal
 module.exports = mongoose.model('teacher', teacherModel);
